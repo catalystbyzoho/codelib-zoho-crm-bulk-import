@@ -1,0 +1,33 @@
+name: ReleaseCRMBulkWrite
+on:
+  push:
+    tags:
+      - 'v*' # P
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Creating 'Release' Directory
+        run: mkdir -p release/functions
+      - name: Installing Packages for 'CRM Bulk Job Service' & Creating the Zip
+        run: cd functions/crm_bulk_job_service/ && npm install --omit=dev && zip -r ../../release/functions/crm_bulk_job_service.zip .
+      - name : Installing Packages for 'CRM Bulk Upload Initiator' & Creating the Zip
+        run: cd functions/crm_bulk_job_initiator/ && npm install --omit=dev && zip -r ../../release/functions/crm_bulk_job_initiator.zip .
+      - name: Copy Project Template Json
+        run: cp project-template-1.0.0.json release/project-template-1.0.0.json
+      - name: Creating Zip of Release Folder
+        run: cd release && zip -r release.zip .
+
+      # - uses: actions/checkout@v2
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: './release/release.zip'
+          bodyFile: 'README.md'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ env.RELEASE_VERSION }}

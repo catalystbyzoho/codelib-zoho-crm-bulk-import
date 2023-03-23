@@ -1,0 +1,23 @@
+{
+	"name": "crm_bulk_job_initiator",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "solutions@zohocatalyst.com",
+	"dependencies": {
+		"archiver": "^5.3.1",
+		"request": "^2.88.2",
+		"uuid": "^9.0.0",
+		"zcatalyst-sdk-node": "latest"
+	},
+	"scripts": {
+		"lint":"eslint --fix ."
+	},
+	"devDependencies": {
+		"eslint": "^8.36.0",
+		"eslint-config-google": "^0.14.0",
+		"eslint-config-standard": "^17.0.0",
+		"eslint-plugin-import": "^2.27.5",
+		"eslint-plugin-n": "^15.6.1",
+		"eslint-plugin-promise": "^6.1.1"
+	}
+}

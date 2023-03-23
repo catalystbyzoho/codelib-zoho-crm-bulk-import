@@ -1,0 +1,130 @@
+{
+	"name": "project-template",
+	"version": "1.0.0",
+	"parameters": {},
+	"components": {
+		"Functions": [
+			{
+				"type": "function",
+				"name": "crm_bulk_job_initiator",
+				"properties": {
+					"stack": "node16",
+					"code": {
+						"path": "functions/crm_bulk_job_initiator.zip"
+					},
+					"configuration": {
+						"environment": {
+							"variables": {
+								"CLIENT_SECRET": "Your Client Secret",
+								"CLIENT_ID": "Your Client Id",
+								"REFRESH_TOKEN": "Your Refresh Token",
+								"REFRESH_TOKEN_URL": "https://accounts.zoho.com/oauth/v2/token"
+							},
+							"last_updated_time": 1676295546724
+						},
+						"memory": 512
+					},
+					"type": "event",
+					"name": "crm_bulk_job_initiator"
+				},
+				"dependsOn": []
+			},
+			{
+				"type": "function",
+				"name": "crm_bulk_job_service",
+				"properties": {
+					"stack": "node16",
+					"code": {
+						"path": "functions/crm_bulk_job_service.zip"
+					},
+					"configuration": {
+						"environment": {
+							"variables": {
+								"CLIENT_SECRET": "Your Client Secret",
+								"CLIENT_ID": "Your Client Id",
+								"REFRESH_TOKEN": "Your Refresh Token",
+								"CODELIB_SECRET_KEY": "CODELIB_FAKE_KEY",
+								"REFRESH_TOKEN_URL": "https://accounts.zoho.com/oauth/v2/token"
+							},
+							"last_updated_time": 1676295546724
+						},
+						"memory": 512
+					},
+					"type": "applogic",
+					"name": "crm_bulk_job_service"
+				},
+				"dependsOn": []
+			}
+		],
+		"Filestore": [
+			{
+				"type": "folder",
+				"name": "CrmFiles",
+				"properties": {
+					"audit_consent": false,
+					"folder_name": "CrmFiles"
+				},
+				"dependsOn": []
+			},
+			{
+				"type": "folderPermission",
+				"name": "CrmFiles-App Administrator",
+				"properties": {
+					"role_name": "App Administrator",
+					"folder_name": "CrmFiles",
+					"type": "App Administrator",
+					"folder_permissions": ["DOWNLOAD", "UPLOAD", "DELETE"]
+				},
+				"dependsOn": ["Filestore.folder.CrmFiles"]
+			},
+			{
+				"type": "folderPermission",
+				"name": "CrmFiles-App User",
+				"properties": {
+					"role_name": "App User",
+					"folder_name": "CrmFiles",
+					"type": "App User",
+					"folder_permissions": ["DOWNLOAD"]
+				},
+				"dependsOn": ["Filestore.folder.CrmFiles"]
+			}
+		],
+
+		"EventListeners": [
+			{
+				"type": "rules",
+				"name": "CrmBulkJobInitiator",
+				"properties": {
+					"listener_name": "Default",
+					"rule_name": "CrmBulkJobInitiator",
+					"description": "",
+					"source_type": "Cache",
+					"source": [
+						{
+							"entity_identifier": "CrmFiles"
+						}
+					],
+					"target": [
+						{
+							"entity_identifier": "crm_bulk_job_initiator",
+							"target_type": "Function"
+						}
+					],
+					"action": ["Put"],
+					"status": true
+				},
+				"dependsOn": ["Functions.function.crm_bulk_job_initiator"]
+			}
+		],
+		"Cache": [
+			{
+				"type": "segment",
+				"name": "CrmFiles",
+				"properties": {
+					"segment_name": "CrmFiles"
+				},
+				"dependsOn": []
+			}
+		] 
+	}
+}

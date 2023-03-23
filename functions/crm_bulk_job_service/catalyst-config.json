@@ -1,0 +1,17 @@
+{
+	"deployment": {
+		"name": "crm_bulk_job_service",
+		"stack": "node16",
+		"type": "advancedio",
+		"env_variables": {
+			"CLIENT_SECRET": "Your Client Secret",
+			"CLIENT_ID": "Your Client Id",
+			"REFRESH_TOKEN": "Your Refresh Token",
+			"CODELIB_SECRET_KEY":"CODELIB_FAKE_KEY",
+			"REFRESH_TOKEN_URL": "https://accounts.zoho.com/oauth/v2/token"
+		}
+	},
+	"execution": {
+		"main": "index.js"
+	}
+}
