@@ -26,7 +26,7 @@ app.use((req, res, next) => {
       )
     ) {
       throw new AppError(
-        400,
+        401,
         "You don't have permission to perform this operation. Kindly contact your administrator for more details."
       )
     }
