@@ -29,7 +29,7 @@ The split files are zipped together and the zip is passed to the Bulk File Uploa
 
 The following Catalyst resources are auto-configured and used as a part of the Zoho CRM Bulk Import CodeLib :
 
-**1. [Catalyst Serverless Functions](https://catalyst.zoho.com/help/functions.html) :** This **crm_bulk_job_service([Advanced I/O](https://catalyst.zoho.com/help/advancedio-functions.html))** function handles the logic to upload the file from user's local system to a pre-configured folder(**CrmFiles**) in the File Store.
+**1. [Catalyst Serverless Functions](https://catalyst.zoho.com/help/functions.html) :** The **crm_bulk_job_service([Advanced I/O](https://catalyst.zoho.com/help/advancedio-functions.html))** function handles the logic to upload the file from user's local system to a pre-configured folder(**CrmFiles**) in the File Store.
 
 The **crm_bulk_job_initiator([Event](https://catalyst.zoho.com/help/event-functions.html)**) function is invoked when the Advanced I/O function uploads the file to the **CrmFiles** folder and an entry is made in the pre-configured cache segment(**CrmFiles**). This function handles the logic to upload the file to CRM servers using the [Bulk File Upload API](https://www.zoho.com/crm/developer/docs/api/v3/bulk-write/upload-file.html) and then write the file to the specific CRM module using the [Bulk Write](https://www.zoho.com/crm/developer/docs/api/v3/bulk-write/create-job.html) API.
 
