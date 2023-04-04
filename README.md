@@ -1,4 +1,3 @@
-
 # Zoho CRM Bulk Import
 
 The Zoho CRM Bulk Import CodeLib enables you to import data in bulk to any standard modules in Zoho CRM.
@@ -30,18 +29,12 @@ The split files are zipped together and the zip is passed to the Bulk File Uploa
 
 The following Catalyst resources are auto-configured and used as a part of the Zoho CRM Bulk Import CodeLib :
 
-**1.[Catalyst Serverless Functions](https://catalyst.zoho.com/help/functions.html) :**
-
-This **crm_bulk_job_service([Advanced I/O](https://catalyst.zoho.com/help/advancedio-functions.html))** function handles the logic to upload the file from user's local system to a pre-configured folder(**CrmFiles**) in the File Store.
+**1. [Catalyst Serverless Functions](https://catalyst.zoho.com/help/functions.html) :** This **crm_bulk_job_service([Advanced I/O](https://catalyst.zoho.com/help/advancedio-functions.html))** function handles the logic to upload the file from user's local system to a pre-configured folder(**CrmFiles**) in the File Store.
 
 The **crm_bulk_job_initiator([Event](https://catalyst.zoho.com/help/event-functions.html)**) function is invoked when the Advanced I/O function uploads the file to the **CrmFiles** folder and an entry is made in the pre-configured cache segment(**CrmFiles**). This function handles the logic to upload the file to CRM servers using the [Bulk File Upload API](https://www.zoho.com/crm/developer/docs/api/v3/bulk-write/upload-file.html) and then write the file to the specific CRM module using the [Bulk Write](https://www.zoho.com/crm/developer/docs/api/v3/bulk-write/create-job.html) API.
 
-**2.[Catalyst Cloud Scale File Store](https://catalyst.zoho.com/help/file-store.html) :**
+**2. [Catalyst Cloud Scale File Store](https://catalyst.zoho.com/help/file-store.html) :** We have used the Catalyst File Store component in the Zoho CRM Bulk Import CodeLib for the purpose of storing the files uploaded from the user's local system and then uploading it to the Zoho CRM module.
 
-We have used the Catalyst File Store component in the Zoho CRM Bulk Import CodeLib for the purpose of storing the files uploaded from the user's local system and then uploading it to the Zoho CRM module.
+**3. [Catalyst Cloud Scale Event Listener](https://catalyst.zoho.com/help/event-listeners.html) :** An rule in the default Event Listener is pre-configured to execute the event function(**crm_bulk_job_initiator)** whenever data insertion operation happens in the cache segment(**CrmFiles**).
 
-**3.[Catalyst Cloud Scale Event Listener](https://catalyst.zoho.com/help/event-listeners.html) :**
-
-An rule in the default Event Listener is pre-configured to execute the event function(**crm_bulk_job_initiator)** whenever data insertion operation happens in the cache segment(**CrmFiles**).
-
-**4.[Catalyst Cloud Scale Cache](https://catalyst.zoho.com/help/cache.html) :** The cache segment(**CrmFiles**) is used to temporarily store the file data and is configured with an event rule to invoke the corresponding event function.
+**4. [Catalyst Cloud Scale Cache](https://catalyst.zoho.com/help/cache.html) :** The cache segment(**CrmFiles**) is used to temporarily store the file data and is configured with an event rule to invoke the corresponding event function.
