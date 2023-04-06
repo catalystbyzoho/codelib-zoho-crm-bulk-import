@@ -2,7 +2,7 @@
 
 The Zoho CRM Bulk Import CodeLib enables you to import data in bulk to any standard modules in Zoho CRM.
 
-**Note:** You can get more detailed information on the steps to install and configure the Zoho CRM Bulk Import CodeLib from your Catalyst console. You must navigate to the bottom of your Catalyst console where you will find the **_Catalyst CodeLib_** section. You can click on the **Zoho****CRM Bulk Import CodeLib** tile to access the steps.
+**Note:** You can get more detailed information on the steps to install and configure the Zoho CRM Bulk Import CodeLib from your Catalyst console. You must navigate to the bottom of your Catalyst console where you will find the **_Catalyst CodeLib_** section. You can click on the **Zoho CRM Bulk Import CodeLib** tile to access the steps.
 
 **How does the CodeLib work?**
 
