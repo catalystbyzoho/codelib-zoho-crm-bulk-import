@@ -2,7 +2,7 @@ class AppConstants {
   static JobName = 'CRM_BULK_JOB'
   static File = {
     MaxFiles: 1,
-    MaxSize: 80 * 1000 * 1000
+    MaxSize: 50 * 1000 * 1000
   }
 
   static Catalyst = {

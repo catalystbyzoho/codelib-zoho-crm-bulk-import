@@ -53,7 +53,7 @@ app.post('/job', async (req, res) => {
             )
           } else if (err.code === 'LIMIT_FILE_SIZE') {
             reject(
-              new AppError(400, "'file' should be a maximum size of 80 MB.")
+              new AppError(400, "'file' should be a maximum size of 50 MB.")
             )
           } else {
             reject(new AppError(400, "We're unable to process your request."))

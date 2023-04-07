@@ -197,7 +197,7 @@ module.exports = async (event, context) => {
     await segment.delete(data.cache_name)
     await folder.deleteFile(fileId)
 
-    console.log('Total Records Processed ::: ', csvProcessor.totalRecords)
+    console.log('Total Records Scheduled For Processing ::: ', csvProcessor.totalRecords)
 
     context.closeWithSuccess()
   } catch (err) {
