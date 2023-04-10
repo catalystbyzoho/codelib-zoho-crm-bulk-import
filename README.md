@@ -37,4 +37,4 @@ The **crm_bulk_job_initiator([Event](https://catalyst.zoho.com/help/event-functi
 
 **3. [Catalyst Cloud Scale Event Listener](https://catalyst.zoho.com/help/event-listeners.html) :** An rule in the default Event Listener is pre-configured to execute the event function(**crm_bulk_job_initiator)** whenever data insertion operation happens in the cache segment(**CrmFiles**).
 
-**4. [Catalyst Cloud Scale Cache](https://catalyst.zoho.com/help/cache.html) :** The cache segment(**CrmFiles**) is used to temporarily store the file data and is configured with an event rule to invoke the corresponding event function.
+**4. [Catalyst Cloud Scale Cache](https://catalyst.zoho.com/help/cache.html) :** The cache segment(**CrmFiles**) is used to temporarily store the metadata of the file and the CRM credentials information, and is configured with an event rule to invoke the corresponding event function.
