@@ -201,7 +201,7 @@ module.exports = async (event, context) => {
 
     context.closeWithSuccess()
   } catch (err) {
-    console.log(err)
+    console.log('Error :::', err?.message || err)
     context.closeWithFailure()
   }
 }

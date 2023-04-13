@@ -1,15 +1,15 @@
 const AppError = require('./AppError')
 
 class ErrorHandler {
-  processError = (error) => {
-    if (error instanceof AppError) {
+  processError = (err) => {
+    if (err instanceof AppError) {
       return {
         status: 'failure',
-        statusCode: error.statusCode,
-        message: error.message
+        statusCode: err.statusCode,
+        message: err.message
       }
     } else {
-      console.log('Error ::: ', error)
+      console.log('Error :::', err?.message || err)
       return {
         status: 'failure',
         statusCode: 500,
