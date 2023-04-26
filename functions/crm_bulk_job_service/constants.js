@@ -18,7 +18,7 @@ class AppConstants {
   }
 
   static Headers = {
-    CodelibSecretKey: 'x-codelib-secret-key'
+    CodelibSecretKey: 'catalyst-codelib-secret-key'
   }
 
   static Env = {
